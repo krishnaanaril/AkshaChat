@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 declare const gapi: any;
 
 @Component({
@@ -6,17 +6,24 @@ declare const gapi: any;
   templateUrl: './google-signin.component.html',
   styleUrls: ['./google-signin.component.css']
 })
-export class GoogleSigninComponent implements OnInit, AfterViewInit {
+export class GoogleSigninComponent implements OnInit {
 
   constructor() {
     //TODO
   }
 
-  ngOnInit() {
-    //TODO
+  ngOnInit() {        
+    this.renderButton();
   }  
 
   renderButton() {
+    //Sets the client id of the application
+    gapi.load('auth2', () => {
+      gapi.auth2.init({
+        client_id: '836874174525-79rnpshvhbcktuap36mm8qejjiqg1nki.apps.googleusercontent.com'
+      });
+    });
+    //Render google button
     gapi.signin2.render('googleBtn', {
       'scope': 'profile email',
       'width': 240,
@@ -28,7 +35,7 @@ export class GoogleSigninComponent implements OnInit, AfterViewInit {
     });
   }
 
-  onSuccess(googleUser) {    
+  onSuccess(googleUser) {
     let profile = googleUser.getBasicProfile();
     console.log('Token || ' + googleUser.getAuthResponse().id_token);
     console.log('ID: ' + profile.getId());
@@ -37,14 +44,9 @@ export class GoogleSigninComponent implements OnInit, AfterViewInit {
     console.log('Email: ' + profile.getEmail());
     //YOUR CODE HERE
   }
-  
+
   onFailure(error) {
     console.log(error);
-  } 
-
-  ngAfterViewInit() {
-    console.log('In ngAfterViewInit');    
-    this.renderButton();
-  }
+  }  
 
 }
