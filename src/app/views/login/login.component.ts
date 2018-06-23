@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
     password: ''
   };
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private zone: NgZone) { }
 
   ngOnInit() {
   }
@@ -23,7 +23,9 @@ export class LoginComponent implements OnInit {
     console.log('In signInWithFacebook');
     this.authService.signInWithFacebook()
       .then((res) => {
-        this.router.navigate(['dashboard'])
+        this.zone.run(() => {
+          this.router.navigate(['dashboard'])
+        });
       })
       .catch((err) => console.log(err));
   }
@@ -33,7 +35,10 @@ export class LoginComponent implements OnInit {
     console.log('In signInWithGoogle');
     this.authService.signInWithGoogle()
       .then((res) => {
-        this.router.navigate(['dashboard'])
+        //need to know why zone.run is required here.
+        this.zone.run(() => {
+          this.router.navigate(['dashboard'])
+        });
       })
       .catch((err) => console.log(err));
   }
@@ -43,7 +48,9 @@ export class LoginComponent implements OnInit {
     this.authService.signInRegular(this.user.email, this.user.password)
       .then((res) => {
         console.log(res);
-        this.router.navigate(['dashboard']);
+        this.zone.run(() => {
+          this.router.navigate(['dashboard'])
+        });
       })
       .catch((err) => console.log('error: ' + err));
   }

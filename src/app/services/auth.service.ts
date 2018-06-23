@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs';
+import { UserDetails } from '../models/user-details';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,6 @@ export class AuthService {
       (user) => {
         if (user) {
           this.userDetails = user;
-          console.log(this.userDetails);
         } else {
           this.userDetails = null;
         }
@@ -49,10 +49,35 @@ export class AuthService {
 
   isLoggedIn() {
     if (this.userDetails == null) {
+      try {
+        const userKey = Object.keys(window.localStorage)
+        .filter(it => it.startsWith('firebase:authUser'))[0];
+        this.userDetails = userKey ? JSON.parse(localStorage.getItem(userKey)) : undefined;
+        /*
+          In Chrome data is stored in indexeddb instead of localstorage 
+          need to handle it.
+         */
+        console.log("Trying");
+        console.log(this.userDetails);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    if (this.userDetails == null) {
       return false;
     } else {
       return true;
     }
+  }
+
+  getUserDetails() {
+    let _userDetails: UserDetails = new UserDetails();
+    _userDetails.displayName = this.userDetails.displayName;
+    _userDetails.photoURL = this.userDetails.photoURL;
+    _userDetails.providerId = this.userDetails.providerData? this.userDetails.providerData[0].providerId : undefined;
+    if (this.userDetails.providerData && this.userDetails.providerData[0].providerId.includes('facebook'))
+      _userDetails.photoURL += "?width=9999";
+    return _userDetails;
   }
 
   logout() {

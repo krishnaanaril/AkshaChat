@@ -26,14 +26,15 @@ import { MaterialModule } from './material.module';
     DashboardComponent
   ],
   imports: [
-    BrowserModule,
-    MaterialModule,
-    BrowserAnimationsModule,
     AppRoutes,
+    BrowserModule,      
+    BrowserAnimationsModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),
     AngularFireDatabaseModule,
-    AngularFireAuthModule    
+    AngularFireAuthModule,
+    
+    MaterialModule    
   ],
   providers: [],
   bootstrap: [AppComponent]

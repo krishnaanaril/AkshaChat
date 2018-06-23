@@ -1,8 +1,7 @@
-<form name="userform" method="post" #formCtrl="ngForm">
-  <mat-card class="loginCard">
-    <mat-card-title>Login Form</mat-card-title>
-    <mat-card-content>
-
+<mat-card class="loginCard">
+  <mat-card-title>Login Form</mat-card-title>
+  <mat-card-content>
+    <form name="userform" method="post" #formCtrl="ngForm">
       <div>
         <mat-form-field class="example-full-width">
           <input matInput placeholder="Email" name="email" required [(ngModel)]="user.email">
@@ -12,11 +11,10 @@
         </mat-form-field>
         <button class="loginButton" mat-raised-button color="primary" (click)="signInWithEmail()" [disabled]="formCtrl.form.invalid">Login with Email</button>
       </div>
-
-      <div class="example-full-width">
-        <button mat-raised-button class="loginButton" color="primary" (click)="signInWithFacebook()">Login with Facebook</button>
-        <button mat-raised-button class="loginButton" color="primary" (click)="signInWithGoogle()">Login with Google</button>
-      </div>
-    </mat-card-content>
-  </mat-card>
-</form>
+    </form>
+    <div class="example-full-width">
+      <button mat-raised-button class="loginButton" color="primary" (click)="signInWithFacebook()">Login with Facebook</button>
+      <button mat-raised-button class="loginButton" color="primary" (click)="signInWithGoogle()">Login with Google</button>
+    </div>
+  </mat-card-content>
+</mat-card>
