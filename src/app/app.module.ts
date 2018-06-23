@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { GoogleSigninComponent } from './google-signin/google-signin.component';
@@ -14,7 +15,7 @@ import * as firebase from 'firebase/app';
 import { LoginComponent } from './views/login/login.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { AppRoutes } from './app.routes';
-import {MatButtonModule, MatCardModule} from '@angular/material';
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
@@ -26,13 +27,13 @@ import {MatButtonModule, MatCardModule} from '@angular/material';
   ],
   imports: [
     BrowserModule,
+    MaterialModule,
+    BrowserAnimationsModule,
     AppRoutes,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),
     AngularFireDatabaseModule,
-    AngularFireAuthModule,
-    MatButtonModule,
-    MatCardModule
+    AngularFireAuthModule    
   ],
   providers: [],
   bootstrap: [AppComponent]
