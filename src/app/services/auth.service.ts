@@ -28,15 +28,13 @@ export class AuthService {
     );
   }
 
-  signInWithFacebook() {
-    console.log('In signInWithFacebook - authService');
+  signInWithFacebook() {    
     return this._firebaseAuth.auth.signInWithPopup(
       new firebase.auth.FacebookAuthProvider()
     )
   }
 
-  signInWithGoogle() {
-    console.log('In signInWithGoogle - authService');
+  signInWithGoogle() {    
     return this._firebaseAuth.auth.signInWithPopup(
       new firebase.auth.GoogleAuthProvider()
     )
@@ -56,9 +54,7 @@ export class AuthService {
         /*
           In Chrome data is stored in indexeddb instead of localstorage 
           need to handle it.
-         */
-        console.log("Trying");
-        console.log(this.userDetails);
+         */        
       } catch (error) {
         console.log(error);
       }

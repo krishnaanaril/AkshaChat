@@ -4,9 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { GoogleSigninComponent } from './google-signin/google-signin.component';
-import { FacebookSigninComponent } from './facebook-signin/facebook-signin.component';
-
 import { environment } from '../environments/environment';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -19,9 +16,7 @@ import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    GoogleSigninComponent,
-    FacebookSigninComponent,
+    AppComponent,    
     LoginComponent,
     DashboardComponent
   ],

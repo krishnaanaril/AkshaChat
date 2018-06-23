@@ -19,8 +19,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  signInWithFacebook() {
-    console.log('In signInWithFacebook');
+  signInWithFacebook() {    
     this.authService.signInWithFacebook()
       .then((res) => {
         this.zone.run(() => {
@@ -31,8 +30,7 @@ export class LoginComponent implements OnInit {
   }
 
 
-  signInWithGoogle() {
-    console.log('In signInWithGoogle');
+  signInWithGoogle() {    
     this.authService.signInWithGoogle()
       .then((res) => {
         //need to know why zone.run is required here.
@@ -44,10 +42,9 @@ export class LoginComponent implements OnInit {
   }
 
   signInWithEmail() {
-
     this.authService.signInRegular(this.user.email, this.user.password)
       .then((res) => {
-        console.log(res);
+        
         this.zone.run(() => {
           this.router.navigate(['dashboard'])
         });

@@ -1,4 +1,20 @@
-<p>
-  Hello {{userDetails.displayName}} <img [src]="userDetails.photoURL" [alt]  ="userDetails.displayName">
-</p>
-<button mat-raised-button class="loginButton" color="primary" (click)="signOut()">Sign Out</button>
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <p>Auto-resizing sidenav</p>
+
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <p>
+      Hello {{userDetails.displayName}}
+      <img [src]="userDetails.photoURL" [alt]="userDetails.displayName" class="profilePic rounded-circle">
+    </p>
+    <button mat-raised-button class="loginButton" color="primary" (click)="signOut()">
+      Sign Out
+    </button>
+    <button mat-raised-button class="loginButton" (click)="drawer.toggle()">
+      Toggle sidenav
+    </button>
+  </div>
+
+</mat-drawer-container>
