@@ -11,7 +11,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class DashboardComponent implements OnInit {
 
-  private userDetails: UserDetails;
+  public userDetails: UserDetails;
 
   constructor(private authService: AuthService, private router: Router) { }
 

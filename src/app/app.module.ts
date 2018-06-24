@@ -13,6 +13,7 @@ import { LoginComponent } from './views/login/login.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { AppRoutes } from './app.routes';
 import { MaterialModule } from './material.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,9 @@ import { MaterialModule } from './material.module';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     
-    MaterialModule    
+    MaterialModule,
+    
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })    
   ],
   providers: [],
   bootstrap: [AppComponent]
