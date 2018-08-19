@@ -1,20 +1,33 @@
-<mat-card class="loginCard">
-  <mat-card-title>Login Form 2</mat-card-title>
-  <mat-card-content>
-    <form name="userform" method="post" #formCtrl="ngForm">
-      <div>
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Email" name="email" required [(ngModel)]="user.email">
-        </mat-form-field>
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Password" type="password" name="password" required [(ngModel)]="user.password">
-        </mat-form-field>
-        <button class="loginButton" mat-raised-button color="primary" (click)="signInWithEmail()" [disabled]="formCtrl.form.invalid">Login with Email</button>
-      </div>
-    </form>
-    <div class="example-full-width">
-      <button mat-raised-button class="loginButton" color="primary" (click)="signInWithFacebook()">Login with Facebook</button>
-      <button mat-raised-button class="loginButton" color="primary" (click)="signInWithGoogle()">Login with Google</button>
+<div class="loginMain">
+  <mat-card class="loginCard">
+    <mat-card-title>
+      <div class="placeCenter">
+      <h2 class="appHeader">BubblesChat</h2>
     </div>
-  </mat-card-content>
-</mat-card>
+    </mat-card-title>
+    <mat-card-content>
+      <div class="example-full-width placeCenter buttonSpacing">
+        <button mat-raised-button class="loginButton" color="primary" (click)="signInWithFacebook()">Login with Facebook</button>
+      </div>
+      <div class="example-full-width placeCenter buttonSpacing">
+        <button mat-raised-button class="loginButton" color="primary" (click)="signInWithGoogle()">Login with Google</button>
+      </div>
+      <span class="orBlock">
+        <h3>-Or-</h3>
+      </span>
+      <form name="userform" method="post" #formCtrl="ngForm">
+        <div>
+          <mat-form-field class="example-full-width placeCenter loginFields">
+            <input matInput placeholder="Email" name="email" required [(ngModel)]="user.email">
+          </mat-form-field>
+          <mat-form-field class="example-full-width placeCenter loginFields">
+            <input matInput placeholder="Password" type="password" name="password" required [(ngModel)]="user.password">
+          </mat-form-field>
+          <div class="example-full-width placeCenter buttonSpacing">
+            <button class="loginButton" mat-raised-button color="primary" (click)="signInWithEmail()" [disabled]="formCtrl.form.invalid">Login with Email</button>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

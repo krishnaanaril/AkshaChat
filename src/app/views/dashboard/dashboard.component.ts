@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { Observable } from 'rxjs';
 
 import { UserDetails} from '../../models/user-details';
 import { AuthService } from '../../services/auth.service';
@@ -13,12 +14,14 @@ import { AuthService } from '../../services/auth.service';
 export class DashboardComponent implements OnInit {
 
   public userDetails: UserDetails;
-  public users: AngularFireList<UserDetails[]>;
+  // public users: AngularFireList<UserDetails[]>;
+  item: Observable<any>;
 
   constructor(private authService: AuthService
     , private router: Router
-    , db: AngularFireDatabase) { 
-      this.users = db.list('/Users');
+    , db: AngularFireDatabase) {
+      // this.users = db.list('/Users');
+      this.item = db.object('Users').valueChanges();
     }
 
   ngOnInit() {
@@ -32,7 +35,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  signOut(){
+  signOut() {
     this.authService.logout();
   }
 

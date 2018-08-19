@@ -5,9 +5,10 @@
   </mat-drawer>
 
   <div class="example-sidenav-content">
+      <h1>{{ (item | async)?.displayName }}</h1>
     <p>
       Hello {{userDetails.displayName}}
-      <img [src]="userDetails.photoURL" [alt]="userDetails.displayName" class="profilePic rounded-circle">
+      <img [src]="userDetails.photoURL" [alt]="userDetails.displayName" class="profilePic rounded-circle">      
     </p>
     <button mat-raised-button class="loginButton" color="primary" (click)="signOut()">
       Sign Out
@@ -16,7 +17,7 @@
       Toggle sidenav
     </button>
     <p>
-      {{users | json}}
+      <!-- {{users | json}} -->
     </p>
   </div>
 
