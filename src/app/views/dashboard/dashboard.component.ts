@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Observable } from 'rxjs';
 
-import { UserDetails} from '../../models/user-details';
+import { UserDetails } from '../../models/user-details';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -20,19 +20,12 @@ export class DashboardComponent implements OnInit {
   constructor(private authService: AuthService
     , private router: Router
     , db: AngularFireDatabase) {
-      // this.users = db.list('/Users');
-      this.item = db.object('Users').valueChanges();
-    }
+    // this.users = db.list('/Users');
+    this.item = db.object('Users').valueChanges();
+  }
 
   ngOnInit() {
     this.userDetails = this.authService.getUserDetails();
-    Notification.requestPermission().then(function() {
-      console.log('Notification permission granted.');
-      // TODO(developer): Retrieve an Instance ID token for use with FCM.
-      // ...
-    }).catch(function(err) {
-      console.log('Unable to get permission to notify.', err);
-    });
   }
 
   signOut() {

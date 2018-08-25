@@ -23,7 +23,34 @@
   }
 
   .profilePic{
-      width: 75px;
-      height: 75px;
+      width: 35px;
+      height: 35px;
+  }
+
+  .titleBar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
   }
   
+  .titleItems{
+    display: flex;    
+  }
+
+  .titleName{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: center;
+    vertical-align: middle;
+    padding: 0.5em;
+  }
+
+  .titlePic{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: center;
+    vertical-align: middle;
+  }

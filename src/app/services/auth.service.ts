@@ -14,9 +14,9 @@ export class AuthService {
   private user: Observable<firebase.User>;
   private userDetails: firebase.User = null;
 
-  constructor(private _firebaseAuth: AngularFireAuth, private router: Router) {
+  constructor(private _firebaseAuth: AngularFireAuth
+    , private router: Router) {
     this.user = _firebaseAuth.authState;
-
     this.user.subscribe(
       (user) => {
         if (user) {
@@ -26,39 +26,45 @@ export class AuthService {
         }
       }
     );
+    this._firebaseAuth.auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+      .then(function () {
+        // need to fill        
+      })
+      .catch(function (error) {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.error(error);
+      });
+    // _firebaseAuth.auth.onAuthStateChanged(user => {
+    //   if (user) {
+    //     console.log('User found');
+    //     this.userDetails = user;
+    //     console.log('Name: ' + this.userDetails.displayName);
+    //   } else {
+    //     console.log('User not found');
+    //   }
+    // });
   }
 
-  signInWithFacebook() {    
+  signInWithFacebook() {
     return this._firebaseAuth.auth.signInWithPopup(
       new firebase.auth.FacebookAuthProvider()
-    )
+    );
   }
 
-  signInWithGoogle() {    
+  signInWithGoogle() {
     return this._firebaseAuth.auth.signInWithPopup(
       new firebase.auth.GoogleAuthProvider()
-    )
+    );
   }
 
   signInRegular(email, password) {
     const credential = firebase.auth.EmailAuthProvider.credential(email, password);
-    return this._firebaseAuth.auth.signInWithEmailAndPassword(email, password)
+    return this._firebaseAuth.auth.signInWithEmailAndPassword(email, password);
   }
 
   isLoggedIn() {
-    if (this.userDetails == null) {
-      try {
-        const userKey = Object.keys(window.localStorage)
-        .filter(it => it.startsWith('firebase:authUser'))[0];
-        this.userDetails = userKey ? JSON.parse(localStorage.getItem(userKey)) : undefined;
-        /*
-          In Chrome data is stored in indexeddb instead of localstorage 
-          need to handle it.
-         */        
-      } catch (error) {
-        console.log(error);
-      }
-    }
     if (this.userDetails == null) {
       return false;
     } else {
@@ -67,17 +73,19 @@ export class AuthService {
   }
 
   getUserDetails() {
-    let _userDetails: UserDetails = new UserDetails();
+    let _userDetails: UserDetails;
+    _userDetails = new UserDetails();
     _userDetails.displayName = this.userDetails.displayName;
     _userDetails.photoURL = this.userDetails.photoURL;
-    _userDetails.providerId = this.userDetails.providerData? this.userDetails.providerData[0].providerId : undefined;
-    if (this.userDetails.providerData && this.userDetails.providerData[0].providerId.includes('facebook'))
-      _userDetails.photoURL += "?width=9999";
+    _userDetails.providerId = this.userDetails.providerData ? this.userDetails.providerData[0].providerId : undefined;
+    if (this.userDetails.providerData && this.userDetails.providerData[0].providerId.includes('facebook')) {
+      _userDetails.photoURL += '?width=9999';
+    }
     return _userDetails;
   }
 
   logout() {
     this._firebaseAuth.auth.signOut()
-      .then((res) => this.router.navigate(['/']));
+      .then((res) => this.router.navigate(['/login']));
   }
 }
