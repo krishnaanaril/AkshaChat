@@ -3,7 +3,7 @@ import {
   Router, CanActivate,
   ActivatedRouteSnapshot, RouterStateSnapshot
 } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map, take, tap } from 'rxjs/operators';
 import { AngularFireAuth } from 'angularfire2/auth';
 
@@ -21,6 +21,9 @@ export class AuthGuardService implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> {
+    if (this.authService.isLoggedIn()) {
+      return of(true);
+    }
     return this._firebaseAuth.authState.pipe(
       take(1),
       map((authState) => !!authState),

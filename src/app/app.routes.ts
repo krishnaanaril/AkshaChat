@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './views/login/login.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { ChatlistComponent } from './views/chatlist/chatlist.component';
+import { ContactsComponent } from './views/contacts/contacts.component';
 
 const appRoutes: Routes = [
     {
@@ -13,6 +15,16 @@ const appRoutes: Routes = [
         path: 'dashboard',
         canActivate: [AuthGuardService],
         component: DashboardComponent
+    },
+    {
+        path: 'chatlist',
+        canActivate: [AuthGuardService],
+        component: ChatlistComponent
+    },
+    {
+        path: 'contacts',
+        canActivate: [AuthGuardService],
+        component: ContactsComponent
     },
     {
         path: '',
