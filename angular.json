@@ -125,5 +125,10 @@
       }
     }
   },
-  "defaultProject": "Aksha-Chat"
+  "defaultProject": "Aksha-Chat",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "less"
+    }
+  }
 }

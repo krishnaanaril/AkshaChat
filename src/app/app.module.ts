@@ -14,12 +14,14 @@ import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { AppRoutes } from './app.routes';
 import { MaterialModule } from './material.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { ChatlistComponent } from './views/chatlist/chatlist.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    ChatlistComponent
   ],
   imports: [
     AppRoutes,
