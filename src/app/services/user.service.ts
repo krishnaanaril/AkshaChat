@@ -15,17 +15,17 @@ export class UserService {
     this.item = this.itemRef.valueChanges();
   }
 
-  checkUserExists(userId: string){    
+  checkUserExists(userId: string) {
     return false;
   }
 
-  saveUser(userDetails: UserDetails){    
+  saveUser(userDetails: UserDetails) {
     try {
       console.log('In saveUser...');
-      this.itemRef.set(userDetails);  
+      this.itemRef.set(userDetails);
     } catch (error) {
       console.log(error);
-    }     
+    }
   }
 
 }

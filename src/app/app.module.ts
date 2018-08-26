@@ -17,22 +17,20 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
-    AppComponent,    
+    AppComponent,
     LoginComponent,
     DashboardComponent
   ],
   imports: [
     AppRoutes,
-    BrowserModule,      
+    BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    
     MaterialModule,
-    
-    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })    
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

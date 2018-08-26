@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs';
+import { take, map, tap, catchError } from 'rxjs/operators';
+
 import { UserDetails } from '../models/user-details';
+
 
 @Injectable({
   providedIn: 'root'
@@ -26,25 +28,6 @@ export class AuthService {
         }
       }
     );
-    this._firebaseAuth.auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-      .then(function () {
-        // need to fill        
-      })
-      .catch(function (error) {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.error(error);
-      });
-    // _firebaseAuth.auth.onAuthStateChanged(user => {
-    //   if (user) {
-    //     console.log('User found');
-    //     this.userDetails = user;
-    //     console.log('Name: ' + this.userDetails.displayName);
-    //   } else {
-    //     console.log('User not found');
-    //   }
-    // });
   }
 
   signInWithFacebook() {
@@ -62,14 +45,6 @@ export class AuthService {
   signInRegular(email, password) {
     const credential = firebase.auth.EmailAuthProvider.credential(email, password);
     return this._firebaseAuth.auth.signInWithEmailAndPassword(email, password);
-  }
-
-  isLoggedIn() {
-    if (this.userDetails == null) {
-      return false;
-    } else {
-      return true;
-    }
   }
 
   getUserDetails() {

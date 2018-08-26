@@ -24,5 +24,5 @@ export class FirebaseMessagingService {
     }).catch(function (err) {
       console.log('Unable to get permission to notify.', err);
     });
-  }  
+  }
 }
