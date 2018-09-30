@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     private userService: UserService) { }
 
   ngOnInit() {
-    window.navigator.storage.estimate().then(res => { console.log(res); });
+    // window.navigator.storage.estimate().then(res => { console.log(res); });
   }
 
   signInWithFacebook() {
