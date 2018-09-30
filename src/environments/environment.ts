@@ -5,15 +5,14 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyAAeQTBtzobF265J4IFbdpZNLZtTHctk_k",
-    authDomain: "akshachat-1850.firebaseapp.com",
-    databaseURL: "https://akshachat-1850.firebaseio.com",
-    projectId: "akshachat-1850",
-    storageBucket: "akshachat-1850.appspot.com",
-    messagingSenderId: "836874174525"
+    apiKey: "Your Key",
+    authDomain: "Your authDomain",
+    databaseURL: "Your databaseURL",
+    projectId: "Your projectId",
+    storageBucket: "Your storageBucket",
+    messagingSenderId: "Your messagingSenderId"
   }
 };
-
 /*
  * In development mode, to ignore zone related error stack frames such as
  * `zone.run`, `zoneDelegate.invokeTask` for easier debugging, you can

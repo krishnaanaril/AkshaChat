@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { AngularFireDatabase, AngularFireList, AngularFireAction } from 'angularfire2/database';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 import * as firebase from 'firebase/app';
 
 import { UserDetails } from '../models/user-details';
@@ -12,6 +12,12 @@ import { UserDetails } from '../models/user-details';
 export class UserService {
   usersRef: AngularFireList<any>;
   usersList: Observable<any>;
+
+  usersByMail$: Observable<AngularFireAction<firebase.database.DataSnapshot>[]>;
+  usersByName$: Observable<AngularFireAction<firebase.database.DataSnapshot>[]>;
+  emailSearch$: BehaviorSubject<string | null>;
+  nameSearch$: BehaviorSubject<string | null>;
+
   constructor(db: AngularFireDatabase) {
     this.usersList = db.list('UserInfo').valueChanges();
     this.usersRef = db.list('UserInfo');
@@ -19,6 +25,24 @@ export class UserService {
     this.usersList = this.usersRef.snapshotChanges().pipe(
       map(changes =>
         changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+      )
+    );
+
+    this.emailSearch$ = new BehaviorSubject(null);
+    this.usersByMail$ = this.emailSearch$.pipe(
+      switchMap(emailId =>
+        db.list('UserInfo', ref =>
+          emailId ? ref.orderByChild('email').equalTo(emailId) : ref
+        ).snapshotChanges()
+      )
+    );
+
+    this.nameSearch$ = new BehaviorSubject(null);
+    this.usersByName$ = this.nameSearch$.pipe(
+      switchMap(name =>
+        db.list('UserInfo', ref =>
+          name ? ref.orderByChild('displayName').equalTo(name) : ref
+        ).snapshotChanges()
       )
     );
   }
@@ -37,7 +61,8 @@ export class UserService {
       _userDetails.photoURL += '?width=9999';
     }
     _userDetails.uid = user.uid;
-    _userDetails.phoneNumber =  user.phoneNumber;
+    _userDetails.phoneNumber = user.phoneNumber;
+    _userDetails.email = user.email;
     return _userDetails;
   }
 
@@ -49,6 +74,17 @@ export class UserService {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  searchUser(searchText: string, isEmail: boolean) {
+    if (isEmail) {
+      console.log('searching email....');
+      this.emailSearch$.next(searchText);
+    } else {
+      console.log('searching name....');
+      this.nameSearch$.next(searchText);
+    }
+
   }
 
 }

@@ -1,3 +1,35 @@
-<p>
-  search works!
-</p>
+<div class="cover">
+  <div>
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <div class="titleBar">
+          <div class="titleItems">
+            <div class="titlePic">
+              <button mat-icon-button (click)="backClick()">
+                <mat-icon>arrow_back</mat-icon>
+              </button>
+            </div>
+            <div class="titleName">
+              <div>Search</div>
+            </div>
+          </div>          
+        </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
+  <div class="searchBody">
+      <mat-form-field class="example-form-field">
+    <input matInput type="text" placeholder="Enter name or email" [(ngModel)]="searchText">
+    <button mat-button *ngIf="searchText" matSuffix mat-icon-button aria-label="Clear" (click)="searchText=''">
+      <mat-icon>clear</mat-icon>
+    </button>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="searchUser()">Search</button>
+  </div>
+  <div>
+    <div *ngFor="let user of searchResultSet">
+      <img [src]="user.photoURL">
+      <span>{{user.displayName}}</span>
+    </div>
+  </div>
+</div>

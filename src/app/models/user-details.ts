@@ -4,4 +4,5 @@ export class UserDetails {
     public providerId: string;
     public uid: string;
     public phoneNumber: string;
+    public email: string;
 }
