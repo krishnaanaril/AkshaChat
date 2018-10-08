@@ -2,33 +2,18 @@
   <div>
     <mat-toolbar color="primary">
       <mat-toolbar-row>
-        <div class="titleBar">
-          <div class="titleItems">
-            <div class="titlePic">
-              <button mat-icon-button (click)="backClick()">
-                <mat-icon>arrow_back</mat-icon>
-              </button>
-            </div>
-            <div class="titleName">
-              <div>Contacts</div>
-            </div>
+        <div class="searchBar">
+          <div>
+            <button mat-icon-button (click)="backClick()">
+              <mat-icon>arrow_back</mat-icon>
+            </button>
+            Contacts
           </div>
-          <div class="titleItems">
-            <div class="titlePic">
-              <button mat-icon-button [matMenuTriggerFor]="menu">
-                <mat-icon>more_vert</mat-icon>
+          <div>
+            <input class="searchText" type="text">
+            <button mat-icon-button (click)="backClick()">
+                <mat-icon>search</mat-icon>
               </button>
-              <mat-menu #menu="matMenu">
-                <button mat-menu-item>
-                  <mat-icon>insert_invitation</mat-icon>
-                  <span>Add</span>
-                </button>
-                <button mat-menu-item routerLink="/search">
-                    <mat-icon>search</mat-icon>
-                    <span>Search</span>
-                  </button>
-              </mat-menu>
-            </div>
           </div>
         </div>
       </mat-toolbar-row>

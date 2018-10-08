@@ -17,6 +17,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { ChatlistComponent } from './views/chatlist/chatlist.component';
 import { ContactsComponent } from './views/contacts/contacts.component';
 import { SearchComponent } from './views/search/search.component';
+import { ChatMainComponent } from './views/chat-main/chat-main.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { SearchComponent } from './views/search/search.component';
     DashboardComponent,
     ChatlistComponent,
     ContactsComponent,
-    SearchComponent
+    SearchComponent,
+    ChatMainComponent
   ],
   imports: [
     AppRoutes,

@@ -8,6 +8,8 @@ import { Location } from '@angular/common';
 })
 export class ContactsComponent implements OnInit {
 
+  searchText: string;
+
   constructor(private location: Location) { }
 
   ngOnInit() {

@@ -30,14 +30,16 @@
       </mat-toolbar-row>
     </mat-toolbar>
   </div>
-  <!-- <div class="mainContent"> -->
   <div class="chatLayout">
-    <h1>chat list</h1>
+    <mat-tab-group mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4">
+      <mat-tab label="Chats"> 
+          <app-chatlist></app-chatlist>
+      </mat-tab>
+      <mat-tab label="Groups"> TODO </mat-tab>
+      <mat-tab label="Calls"> TODO </mat-tab>
+    </mat-tab-group>
   </div>
-  <!-- <div class="messageBar">
-    <h1>type a message</h1>
-  </div> -->
-  <!-- </div> -->
+
   <div class="btnContacts">
     <button mat-fab routerLink="/contacts">
       <mat-icon aria-label="View contacts page">contacts</mat-icon>
